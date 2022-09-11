@@ -9,9 +9,14 @@
  1. 게임 시작버튼을 누르면 컴퓨터가 1~10까지 랜덤으로 숫자 선택
  2. 사용자는 가진 구슬 개수를 걸고 홀짝 중 하나를 선택
  3. 결과값이 화면에 보여짐
+ 
+ 4. 음악 파일을 추가한다
+ 5. AVFoundation 프레임워크 추가
+ 6. AVAudioPlayer 객체를 만들어 음악을 재생
  */
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
     
@@ -21,7 +26,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var imageContainer: UIView!
     @IBOutlet weak var firstImage: UIImageView!
     
-    
+    var player: AVAudioPlayer?
     var comBallCount: Int = 20
     var userBallCount: Int = 20
     
@@ -31,10 +36,15 @@ class ViewController: UIViewController {
         computerBallCountLabel.text = String(comBallCount)
         userBallCountLabel.text = String(userBallCount)
         self.imageContainer.isHidden = true
+        
+        play(fileName: "intro")
+        
     }
 
     @IBAction func gameStartPressed(_ sender: Any) {
         self.imageContainer.isHidden = false
+        
+        self.play(fileName: "gamestart")
         
         UIView.animate(withDuration: 3.0) {
             self.firstImage.transform = CGAffineTransform(scaleX: 5, y: 5)
@@ -52,8 +62,8 @@ class ViewController: UIViewController {
         let alert = UIAlertController.init(title: "Game Start", message: "홀 짝을 선택해주세요.", preferredStyle: .alert)
         
         let oddBtn = UIAlertAction(title: "홀", style: .default){ _ in
-            print("홀 버튼을 클릭했습니다.")
-            
+//            print("홀 버튼을 클릭했습니다.")
+            self.play(fileName: "click")  // 효과음
             guard let input = alert.textFields?.first?.text else{
                 return
             }
@@ -66,8 +76,8 @@ class ViewController: UIViewController {
             self.getWinner(count: value, select: "홀")
         }
         let evenBtn = UIAlertAction(title: "짝", style: .default) { _ in
-            print("짝 버튼을 클릭했습니다.")
-            
+//            print("짝 버튼을 클릭했습니다.")
+            self.play(fileName: "click")  // 효과음
             guard let input = alert.textFields?.first?.text, let value = Int(input) else{
                 return
             }
@@ -138,5 +148,29 @@ class ViewController: UIViewController {
         self.userBallCountLabel.text = "\(self.userBallCount)"
         self.computerBallCountLabel.text = "\(self.comBallCount)"
     }
+    
+    // 음악 재생 함수
+    func play(fileName: String){
+        let filePath = Bundle.main.url(forResource: fileName, withExtension: "mp3")
+        print("filePath : \(filePath)")
+        guard let path = filePath else{
+            return
+        }
+//        self.player = try? AVAudioPlayer(contentsOf: path)
+        do{
+            self.player = try AVAudioPlayer(contentsOf: path)
+            
+            guard let soundPlayer = self.player else{
+                return
+            }
+            soundPlayer.prepareToPlay()
+            soundPlayer.play()
+            
+        }catch let error{
+            print("\(error.localizedDescription)")
+        }
+    }
+    
+    
 }
 
