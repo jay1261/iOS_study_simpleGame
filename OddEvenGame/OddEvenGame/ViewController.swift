@@ -18,7 +18,10 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController, SettingDelegate{
+
+class ViewController: UIViewController, SettingDelegate, RestartDelegate{
+    
+
     
     @IBOutlet weak var computerBallCountLabel: UILabel!
     @IBOutlet weak var userBallCountLabel: UILabel!
@@ -29,6 +32,7 @@ class ViewController: UIViewController, SettingDelegate{
     var player: AVAudioPlayer?
     var comBallCount: Int = 20
     var userBallCount: Int = 20
+    var result: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -136,7 +140,7 @@ class ViewController: UIViewController, SettingDelegate{
     }
     
     func checkAccountEmpty(balls: Int) -> Bool{
-        return balls == 0
+        return balls <= 0
     }
     
     func calculateBalls(winner: String, count: Int){
@@ -146,6 +150,8 @@ class ViewController: UIViewController, SettingDelegate{
             
             if self.checkAccountEmpty(balls: self.userBallCount){
                 self.resultLabel.text = "컴퓨터 최종승리"
+                self.result = "컴퓨터 최종승리"
+                gameEnd()
             }
         }
         else{
@@ -153,6 +159,8 @@ class ViewController: UIViewController, SettingDelegate{
             self.userBallCount += count
             if self.checkAccountEmpty(balls: self.comBallCount){
                 self.resultLabel.text = "사용자 최종 승리"
+                self.result = "사용자 최종승리"
+                gameEnd()
             }
         }
         
@@ -182,12 +190,30 @@ class ViewController: UIViewController, SettingDelegate{
         }
     }
     
+    func gameEnd(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let endVC = storyboard.instantiateViewController(identifier: "EndViewController") as EndViewController
+        
+        endVC.resultText = result
+        endVC.restartDelegate = self
+        self.navigationController?.pushViewController(endVC, animated: true)
+    }
+    
     func getBallsCount(ballsCount: Int) {
         self.userBallCount = ballsCount
         self.comBallCount = ballsCount
         self.userBallCountLabel.text = "\(ballsCount)"
         self.computerBallCountLabel.text = "\(ballsCount)"
     }
+    
+    func resetGame(ballsCount: Int, resultScreen: String) {
+        self.userBallCount = ballsCount
+        self.comBallCount = ballsCount
+        self.userBallCountLabel.text = "\(ballsCount)"
+        self.computerBallCountLabel.text = "\(ballsCount)"
+        self.resultLabel.text = resultScreen
+    }
+    
     
 }
 
