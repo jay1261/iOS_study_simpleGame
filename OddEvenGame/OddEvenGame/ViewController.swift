@@ -18,7 +18,7 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, SettingDelegate{
     
     @IBOutlet weak var computerBallCountLabel: UILabel!
     @IBOutlet weak var userBallCountLabel: UILabel!
@@ -57,6 +57,17 @@ class ViewController: UIViewController {
     
     
     
+    @IBAction func settingBtnPressed(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let settingVC = storyboard.instantiateViewController(identifier: "SettingViewController") as SettingViewController
+        
+        settingVC.settingDelegate = self
+        
+        settingVC.modalPresentationStyle = .fullScreen
+        self.present(settingVC, animated: true, completion: nil)
+        
+    }
+        
     func showAlert(){
         
         let alert = UIAlertController.init(title: "Game Start", message: "홀 짝을 선택해주세요.", preferredStyle: .alert)
@@ -171,6 +182,12 @@ class ViewController: UIViewController {
         }
     }
     
+    func getBallsCount(ballsCount: Int) {
+        self.userBallCount = ballsCount
+        self.comBallCount = ballsCount
+        self.userBallCountLabel.text = "\(ballsCount)"
+        self.computerBallCountLabel.text = "\(ballsCount)"
+    }
     
 }
 

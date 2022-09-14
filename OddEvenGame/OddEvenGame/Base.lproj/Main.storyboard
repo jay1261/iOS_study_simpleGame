@@ -79,6 +79,22 @@
                                     <constraint firstAttribute="trailing" secondItem="nuV-rY-ST6" secondAttribute="trailing" id="qs4-BX-gnI"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SRH-XV-sbR">
+                                <rect key="frame" x="354" y="54" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="fIg-ve-clA"/>
+                                    <constraint firstAttribute="width" constant="50" id="lne-th-Kkx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="설정" image="pencil" catalog="system">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="settingBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="m86-ev-MAB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -86,11 +102,13 @@
                             <constraint firstItem="jo7-Sk-SSD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="0hr-T9-10b"/>
                             <constraint firstItem="jo7-Sk-SSD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0ry-eG-Hhk"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Igz-Xf-mnV" secondAttribute="trailing" id="1eD-jj-5Vy"/>
+                            <constraint firstItem="SRH-XV-sbR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="AG0-ih-Ptb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ktg-X5-RTs" secondAttribute="bottom" id="LQM-12-yO2"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jo7-Sk-SSD" secondAttribute="trailing" id="UTp-xW-2KT"/>
                             <constraint firstItem="ktg-X5-RTs" firstAttribute="bottom" secondItem="Igz-Xf-mnV" secondAttribute="bottom" id="WCI-r6-PQD"/>
                             <constraint firstItem="ktg-X5-RTs" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="ZBd-Lw-1MA"/>
                             <constraint firstItem="ktg-X5-RTs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ZMX-49-L4i"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="SRH-XV-sbR" secondAttribute="trailing" constant="10" id="tvH-K6-vaT"/>
                             <constraint firstItem="Igz-Xf-mnV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="vxt-s4-bCU"/>
                             <constraint firstItem="ktg-X5-RTs" firstAttribute="top" secondItem="jo7-Sk-SSD" secondAttribute="bottom" id="x9x-Xp-oku"/>
                             <constraint firstItem="Igz-Xf-mnV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="yd7-tl-t8m"/>
@@ -108,10 +126,68 @@
             </objects>
             <point key="canvasLocation" x="18.840579710144929" y="81.696428571428569"/>
         </scene>
+        <!--Setting View Controller-->
+        <scene sceneID="Gt9-Kr-Zh1">
+            <objects>
+                <viewController storyboardIdentifier="SettingViewController" id="bre-x8-VrW" customClass="SettingViewController" customModule="OddEvenGame" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Tju-BM-Sb8">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Fbw-JW-coN">
+                                <rect key="frame" x="149.5" y="431" width="115.5" height="34"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="구슬 개수" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPA-ZQ-nDQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="63.5" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Gu-by-zRD">
+                                        <rect key="frame" x="83.5" y="0.0" width="32" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HYu-lo-tMc">
+                                <rect key="frame" x="0.0" y="812" width="414" height="50"/>
+                                <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="H8d-7Y-z1k"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="수정완료">
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="completeBtnPressed:" destination="bre-x8-VrW" eventType="touchUpInside" id="WHY-Dj-MuO"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="u7G-6D-Fuk"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="u7G-6D-Fuk" firstAttribute="trailing" secondItem="HYu-lo-tMc" secondAttribute="trailing" id="coh-mb-KG6"/>
+                            <constraint firstItem="Fbw-JW-coN" firstAttribute="centerX" secondItem="Tju-BM-Sb8" secondAttribute="centerX" id="vgK-A7-fpO"/>
+                            <constraint firstItem="Fbw-JW-coN" firstAttribute="centerY" secondItem="Tju-BM-Sb8" secondAttribute="centerY" id="w68-DX-FZt"/>
+                            <constraint firstItem="HYu-lo-tMc" firstAttribute="leading" secondItem="u7G-6D-Fuk" secondAttribute="leading" id="w7g-5b-NvY"/>
+                            <constraint firstItem="u7G-6D-Fuk" firstAttribute="bottom" secondItem="HYu-lo-tMc" secondAttribute="bottom" id="xLF-oP-iEw"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="ballsCountTextField" destination="2Gu-by-zRD" id="myh-sN-KX6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WK8-f7-R3z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="791" y="82"/>
+        </scene>
     </scenes>
     <resources>
         <image name="comImage" width="259" height="271"/>
         <image name="fistImage" width="1280" height="1255"/>
+        <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="userImage" width="269" height="292"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
