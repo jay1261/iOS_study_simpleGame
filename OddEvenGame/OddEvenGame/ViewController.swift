@@ -41,14 +41,14 @@ class ViewController: UIViewController, SettingDelegate, RestartDelegate{
         userBallCountLabel.text = String(userBallCount)
         self.imageContainer.isHidden = true
         
-        play(fileName: "intro")
+//        play(fileName: "intro")
         
     }
 
     @IBAction func gameStartPressed(_ sender: Any) {
         self.imageContainer.isHidden = false
         
-        self.play(fileName: "gamestart")
+//        self.play(fileName: "gamestart")
         
         UIView.animate(withDuration: 3.0) {
             self.firstImage.transform = CGAffineTransform(scaleX: 5, y: 5)
@@ -78,7 +78,7 @@ class ViewController: UIViewController, SettingDelegate, RestartDelegate{
         
         let oddBtn = UIAlertAction(title: "홀", style: .default){ _ in
 //            print("홀 버튼을 클릭했습니다.")
-            self.play(fileName: "click")  // 효과음
+//            self.play(fileName: "click")  // 효과음
             guard let input = alert.textFields?.first?.text else{
                 return
             }
@@ -92,7 +92,7 @@ class ViewController: UIViewController, SettingDelegate, RestartDelegate{
         }
         let evenBtn = UIAlertAction(title: "짝", style: .default) { _ in
 //            print("짝 버튼을 클릭했습니다.")
-            self.play(fileName: "click")  // 효과음
+//            self.play(fileName: "click")  // 효과음
             guard let input = alert.textFields?.first?.text, let value = Int(input) else{
                 return
             }
